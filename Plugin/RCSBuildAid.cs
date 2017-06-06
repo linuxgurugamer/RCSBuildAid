@@ -361,17 +361,17 @@ namespace RCSBuildAid
 
                 /* Switching direction */
                 if (!disableShortcuts && Input.anyKeyDown) {
-                    if (PluginKeys.TRANSLATE_UP.GetKeyDown ()) {
+                    if (ExtendedInput.GetKey(PluginKeys.TRANSLATE_UP)) {
                         switchDirection (Direction.up);
-                    } else if (PluginKeys.TRANSLATE_DOWN.GetKeyDown ()) {
+                    } else if (ExtendedInput.GetKey(PluginKeys.TRANSLATE_DOWN)) {
                         switchDirection (Direction.down);
-                    } else if (PluginKeys.TRANSLATE_FWD.GetKeyDown ()) {
+                    } else if (ExtendedInput.GetKey(PluginKeys.TRANSLATE_FWD)) {
                         switchDirection (Direction.forward);
-                    } else if (PluginKeys.TRANSLATE_BACK.GetKeyDown ()) {
+                    } else if (ExtendedInput.GetKey(PluginKeys.TRANSLATE_BACK)) {
                         switchDirection (Direction.back);
-                    } else if (PluginKeys.TRANSLATE_LEFT.GetKeyDown ()) {
+                    } else if (ExtendedInput.GetKey(PluginKeys.TRANSLATE_LEFT)) {
                         switchDirection (Direction.left);
-                    } else if (PluginKeys.TRANSLATE_RIGHT.GetKeyDown ()) {
+                    } else if (ExtendedInput.GetKey(PluginKeys.TRANSLATE_RIGHT)) {
                         switchDirection (Direction.right);
                     }
                 }

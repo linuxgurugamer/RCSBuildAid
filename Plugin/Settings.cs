@@ -271,21 +271,21 @@ namespace RCSBuildAid
     {
         public static KeyBinding PLUGIN_TOGGLE;
 
-        public static KeyBinding TRANSLATE_UP;
-        public static KeyBinding TRANSLATE_DOWN;
-        public static KeyBinding TRANSLATE_BACK;
-        public static KeyBinding TRANSLATE_FWD;
-        public static KeyBinding TRANSLATE_RIGHT;
-        public static KeyBinding TRANSLATE_LEFT;
+        public static KeyCodeExtended TRANSLATE_UP;
+        public static KeyCodeExtended TRANSLATE_DOWN;
+        public static KeyCodeExtended TRANSLATE_BACK;
+        public static KeyCodeExtended TRANSLATE_FWD;
+        public static KeyCodeExtended TRANSLATE_RIGHT;
+        public static KeyCodeExtended TRANSLATE_LEFT;
 
         public static void Setup ()
         {
-            TRANSLATE_UP    = new KeyBinding (GameSettings.TRANSLATE_UP.primary);
-            TRANSLATE_DOWN  = new KeyBinding (GameSettings.TRANSLATE_DOWN.primary);
-            TRANSLATE_BACK  = new KeyBinding (GameSettings.TRANSLATE_BACK.primary);
-            TRANSLATE_FWD   = new KeyBinding (GameSettings.TRANSLATE_FWD.primary);
-            TRANSLATE_RIGHT = new KeyBinding (GameSettings.TRANSLATE_RIGHT.primary);
-            TRANSLATE_LEFT  = new KeyBinding (GameSettings.TRANSLATE_LEFT.primary);
+            TRANSLATE_UP    = GameSettings.TRANSLATE_UP.primary;
+            TRANSLATE_DOWN  = GameSettings.TRANSLATE_DOWN.primary;
+            TRANSLATE_BACK  = GameSettings.TRANSLATE_BACK.primary;
+            TRANSLATE_FWD   = GameSettings.TRANSLATE_FWD.primary;
+            TRANSLATE_RIGHT = GameSettings.TRANSLATE_RIGHT.primary;
+            TRANSLATE_LEFT  = GameSettings.TRANSLATE_LEFT.primary;
 
             PLUGIN_TOGGLE = new KeyBinding (Parse (Settings.GetValue ("shortcut_key", KeyCode.Alpha5.ToString ())));
         }
