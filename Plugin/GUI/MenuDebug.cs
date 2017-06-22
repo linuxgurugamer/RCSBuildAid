@@ -87,7 +87,7 @@ namespace RCSBuildAid
         {
             /*MarkerForces comv = RCSBuildAid.VesselForces;
             MomentOfInertia moi = comv.MoI;
-            GUILayout.BeginHorizontal (GUI.skin.box);
+            GUILayout.BeginHorizontal (RCSBA_Skin.box);
             {
                 GUILayout.BeginVertical (); 
                 {
@@ -120,7 +120,7 @@ namespace RCSBuildAid
             }
             if (massInfo) {
                 if (part != null) {
-                    GUILayout.BeginVertical (GUI.skin.box);
+                    GUILayout.BeginVertical (MainWindow.style.RCSBA_Skin.box);
                     {
                         printMassInfo (part);
                     }
