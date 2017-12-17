@@ -32,7 +32,7 @@ namespace RCSBuildAid
 
         static Events events;
         static MarkerForces vesselForces;
-        static bool userEnable;
+        static bool userEnable = false;
         static PluginMode previousMode = PluginMode.RCS;
         static Direction previousDirection = Direction.right;
         static List<PartModule> rcsList;
@@ -251,6 +251,7 @@ namespace RCSBuildAid
 
         public static void SetActive (bool value)
         {
+            Log.Info("SetActive, setting to: " + value);
             userEnable = value;
             CoM.SetActive (value);
             DCoM.SetActive (value);
@@ -266,6 +267,7 @@ namespace RCSBuildAid
 
         void setSoftActive (bool value)
         {
+            Log.Info("setSoftActive, setting to: " + value);
             /* for disable the plugin temporally without changing what the user set */
             softEnable = value;
             bool pluginEnabled = Enabled;
@@ -315,8 +317,10 @@ namespace RCSBuildAid
             /* the plugin isn't useful in all the editor screens */
             if (EditorScreen.Parts == screen) {
                 setSoftActive (true);
+                RCSBuildAid.SetActive(false);
             } else if (Settings.action_screen && (EditorScreen.Actions == screen)) {
                 setSoftActive (true);
+                RCSBuildAid.SetActive(false);
             } else {
                 setSoftActive (false);
             }
@@ -330,6 +334,7 @@ namespace RCSBuildAid
 
         void Update ()
         {
+
             bool disableShortcuts = EditorUtils.isInputFieldFocused ();
 
             if (!disableShortcuts && PluginKeys.PLUGIN_TOGGLE.GetKeyDown()) {

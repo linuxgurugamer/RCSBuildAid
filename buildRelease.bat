@@ -5,7 +5,7 @@ rem Set variables here
 
 set H=R:\KSP_1.3.1_dev
 set GAMEDIR=RCSBuildAid
-set LICENSE=LICENSE.txt
+set LICENSE=LICENSE.md
 set README=ReadMe.md
 
 set RELEASEDIR=d:\Users\jbb\release

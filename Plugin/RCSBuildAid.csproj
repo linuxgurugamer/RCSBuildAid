@@ -40,6 +40,7 @@
     </Compile>
     <Compile Include="Debug.cs" />
     <Compile Include="DeltaV.cs" />
+    <Compile Include="log.cs" />
     <Compile Include="ModuleForces.cs" />
     <Compile Include="MomentOfInertia.cs" />
     <Compile Include="PartExtensions.cs" />

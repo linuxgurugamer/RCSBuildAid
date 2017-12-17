@@ -73,9 +73,15 @@ namespace RCSBuildAid
 
         public static bool IsMarkerVisible (MarkerType marker)
         {
-            GameObject markerObj = referenceDict [marker];
-            MarkerVisibility markerVis = markerObj.GetComponent<MarkerVisibility> ();
-            return markerVis.isVisible;
+            try
+            {
+                GameObject markerObj = referenceDict[marker];
+                MarkerVisibility markerVis = markerObj.GetComponent<MarkerVisibility>();
+                return markerVis.isVisible;
+            } catch
+            {
+                return false;
+            }
         }
 
         void Awake ()
@@ -105,7 +111,7 @@ namespace RCSBuildAid
             if (vesselOverlays.CoMmarker == null) {
                 throw new Exception ("CoM marker is null, this shouldn't happen.");
             }
-            CoM = vesselOverlays.CoMmarker.gameObject;
+            CoM = vesselOverlays.CoMmarker.gameObject;            
 
             protoMarker = (GameObject)UnityEngine.Object.Instantiate (CoM);
             Destroy (protoMarker.GetComponent<EditorMarker_CoM> ()); /* we don't need this */
@@ -180,6 +186,8 @@ namespace RCSBuildAid
                 /* we need the CoM to remain active, but we can't stop the editor from
                  * deactivating it when the CoM toggle button is used, so we toggle it now so is
                  * toggled again by the editor. That way it will remain active. */
+
+                Log.Info("comButtonClick, setting to: " + !CoM.activeInHierarchy);
                 CoM.SetActive(!CoM.activeInHierarchy);
             }
 
@@ -199,6 +207,7 @@ namespace RCSBuildAid
 
         void activateMarkers(bool value)
         {
+            Log.Info("activateMarkers, setting to: " + value);
             CoM.SetActive (value);
             DCoM.SetActive (value);
             ACoM.SetActive (value);
