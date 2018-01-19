@@ -30,14 +30,19 @@ namespace RCSBuildAid
             get {
                 // While most mod parts have the engineId being the same as the engine mode display name, at least one doesn't
                 // The following logic checks for that 
-                if (modes.ContainsKey(module.mode))
+                try
+                {
+                    // Try this, it works most of the time
                     return modes[module.mode];
-                if (module.mode == module.primaryEngineModeDisplayName)
-                    return modes[module.primaryEngineID];
-                if (module.mode == module.secondaryEngineModeDisplayName)
-                    return modes[module.secondaryEngineID];
-                Log.Info("No modes found, returning null");
-                return null;
+                } catch (Exception e)
+                {
+                    if (module.mode == module.primaryEngineModeDisplayName)
+                        return modes[module.primaryEngineID];
+                    if (module.mode == module.secondaryEngineModeDisplayName)
+                        return modes[module.secondaryEngineID];
+                    Log.Info("No modes found, returning null");
+                    return null;
+                }
             }
         }
 
@@ -51,14 +56,12 @@ namespace RCSBuildAid
 
         protected override void Init ()
         {
-            Log.Info("MultiModeEngineForce");
             module = GetComponent<MultiModeEngine> ();
             if (module == null) {
                 throw new Exception ("Missing MultiModeEngine component.");
             }
             var engines = module.GetComponents<ModuleEngines> ();
             foreach (var eng in engines) {
-                Log.Info("mode[" + eng.engineID + "] = " + eng);
                 modes [eng.engineID] = eng;
             }
             GimbalRotation.addTo (gameObject);

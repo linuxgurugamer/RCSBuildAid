@@ -36,6 +36,17 @@ namespace RCSBuildAid
         const string iconActivePath = "RCSBuildAid/Textures/iconToolbar_active";
         const string iconPath = "RCSBuildAid/Textures/iconToolbar";
 
+        // following for future update to use the ToolbarController
+#if false
+        const string smallActivePath = "RCSBuildAid/Textures/iconToolbar_active";
+        const string smallIconPath = "RCSBuildAid/Textures/iconToolbar";
+        const string largeActivePath = "RCSBuildAid/Textures/iconAppLauncher_active";
+        const string largeIconPath = "RCSBuildAid/Textures/iconAppLauncher";
+
+        const ApplicationLauncher.AppScenes visibleScenes =
+                    ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.VAB;
+#endif
+
         void Awake ()
         {
             if (Settings.toolbar_plugin) {
