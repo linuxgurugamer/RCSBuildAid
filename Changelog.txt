@@ -5,6 +5,9 @@ v0.9.1.1, June 6, 2017:
 
 This document lists important changes between versions.
 
+0.9.5
+	Fixed issue where a mod part which has a different display name than the engine id was causing endless nullrefs
+
 Version 0.9.4
 -------------
 * Fixed CoM marker showing up after clicking action groups and then back to parts, if the mod hadn't been used yet
