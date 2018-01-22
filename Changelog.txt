@@ -1,9 +1,5 @@
-RCS Build Aid Changelog
-=======================
-Elián Hanisch <lambdae2@gmail.com>
-v0.9.1.1, June 6, 2017:
-
-This document lists important changes between versions.
+0.9.5.1
+	Fixed issue where a mod part which has a different display name than the engine id was causing endless nullrefs
 
 0.9.5
 	Fixed issue where a mod part which has a different display name than the engine id was causing endless nullrefs
@@ -18,6 +14,17 @@ Version 0.9.1.1
 
 * Updated for KSP 1.3 by LinuxGuruGamer
 
+RCS Build Aid Changelog
+=======================
+Elián Hanisch <lambdae2@gmail.com>
+v0.9.1.1, June 6, 2017:
+
+
+This document lists important changes between versions.
+0.9.5.1
+	Added code to create PluginData directory if it doesn't exist
+	Added code to read old file and save it in new location
+	New location is RCSBuildAid/PluginData
 
 Version 0.9.1
 -------------

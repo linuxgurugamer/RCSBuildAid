@@ -34,8 +34,12 @@ namespace RCSBuildAid
 
     public static class Settings
     {
-        const string configPath = "GameData/RCSBuildAid/Plugins/PluginData/settings.cfg";
+        const string oldConfigDir = "GameData/RCSBuildAid/Plugins/PluginData";
+        const string configDir = "GameData/RCSBuildAid/PluginData";
+        const string oldConfigPath = oldConfigDir + "/settings.cfg";
+        const string configPath = configDir + "/settings.cfg";
         static string configAbsolutePath;
+        static bool oldPath = true;
         static ConfigNode settings;
 
         public static bool toolbar_plugin_loaded;
@@ -77,81 +81,106 @@ namespace RCSBuildAid
             PluginMode.Parachutes
         };
 
-        public static void LoadConfig ()
+        public static void LoadConfig()
         {
-            configAbsolutePath = Path.Combine (KSPUtil.ApplicationRootPath, configPath);
-            settings = ConfigNode.Load (configAbsolutePath) ?? new ConfigNode ();
+            oldPath = true;
+            bool exists = true;
+            configAbsolutePath = Path.Combine(KSPUtil.ApplicationRootPath, oldConfigPath);
+            if (!File.Exists(configAbsolutePath))
+            {
+                oldPath = false;
+                configAbsolutePath = Path.Combine(KSPUtil.ApplicationRootPath, configPath);
+            }
+            exists = File.Exists(configAbsolutePath);
+            settings = ConfigNode.Load(configAbsolutePath) ?? new ConfigNode();
+            if (oldPath)
+            {
+                try
+                {
+                    File.Delete(configAbsolutePath);
+                    Directory.Delete(Path.Combine(KSPUtil.ApplicationRootPath, oldConfigDir));
+                }
+                catch { }
+                configAbsolutePath = Path.Combine(KSPUtil.ApplicationRootPath, configPath);
+            }
 
-            com_reference = (MarkerType)GetValue ("com_reference", (int)MarkerType.CoM);
-            plugin_mode = (PluginMode)GetValue ("plugin_mode", (int)PluginMode.RCS);
-            direction = (Direction)GetValue ("direction", (int)Direction.right);
+            com_reference = (MarkerType)GetValue("com_reference", (int)MarkerType.CoM);
+            plugin_mode = (PluginMode)GetValue("plugin_mode", (int)PluginMode.RCS);
+            direction = (Direction)GetValue("direction", (int)Direction.right);
 
-            menu_vessel_mass = GetValue ("menu_vessel_mass", false);
-            menu_res_mass    = GetValue ("menu_res_mass"   , false);
-            marker_scale     = GetValue ("marker_scale"    , 1f   );
-            include_rcs      = GetValue ("include_rcs"     , true );
-            include_wheels   = GetValue ("include_wheels"  , false);
-            eng_include_rcs  = GetValue ("eng_include_rcs" , false);
-            resource_amount  = GetValue ("resource_amount" , false);
-            use_dry_mass     = GetValue ("use_dry_mass"    , true );
-            show_marker_com  = GetValue ("show_marker_com" , true );
-            show_marker_dcom = GetValue ("show_marker_dcom", true );
-            show_marker_acom = GetValue ("show_marker_acom", false);
-            marker_autoscale = GetValue ("marker_autoscale", true );
-            menu_minimized   = GetValue ("menu_minimized"  , false);
-            applauncher      = GetValue ("applauncher"     , true );
-            action_screen    = GetValue ("action_screen"   , false);
-            toolbar_plugin   = GetValue ("toolbar_plugin"  , true );
-            window_x         = GetValue ("window_x"        , 280  );
-            window_y         = GetValue ("window_y"        , 114  );
-            disable_mod_compatibility_check = GetValue ("disable_mod_compatibility_check", false);
+            menu_vessel_mass = GetValue("menu_vessel_mass", false);
+            menu_res_mass = GetValue("menu_res_mass", false);
+            marker_scale = GetValue("marker_scale", 1f);
+            include_rcs = GetValue("include_rcs", true);
+            include_wheels = GetValue("include_wheels", false);
+            eng_include_rcs = GetValue("eng_include_rcs", false);
+            resource_amount = GetValue("resource_amount", false);
+            use_dry_mass = GetValue("use_dry_mass", true);
+            show_marker_com = GetValue("show_marker_com", true);
+            show_marker_dcom = GetValue("show_marker_dcom", true);
+            show_marker_acom = GetValue("show_marker_acom", false);
+            marker_autoscale = GetValue("marker_autoscale", true);
+            menu_minimized = GetValue("menu_minimized", false);
+            applauncher = GetValue("applauncher", true);
+            action_screen = GetValue("action_screen", false);
+            toolbar_plugin = GetValue("toolbar_plugin", true);
+            window_x = GetValue("window_x", 280);
+            window_y = GetValue("window_y", 114);
+            disable_mod_compatibility_check = GetValue("disable_mod_compatibility_check", false);
 
             /* for these resources, set some defaults */
-            resource_cfg ["LiquidFuel"] = GetValue (resourceKey ("LiquidFuel"), false);
-            resource_cfg ["Oxidizer"]   = GetValue (resourceKey ("Oxidizer")  , false);
-            resource_cfg ["SolidFuel"]  = GetValue (resourceKey ("SolidFuel") , false);
-            resource_cfg ["XenonGas"]   = GetValue (resourceKey ("XenonGas")  , true );
-            resource_cfg ["IntakeAir"]  = GetValue (resourceKey ("IntakeAir") , true );
-            resource_cfg ["Ablator"]    = GetValue (resourceKey ("Ablator")   , true );
-            resource_cfg ["Ore"]        = GetValue (resourceKey ("Ore")       , false );
-            resource_cfg ["MonoPropellant"] = GetValue (resourceKey ("MonoPropellant"), true);
+            resource_cfg["LiquidFuel"] = GetValue(resourceKey("LiquidFuel"), false);
+            resource_cfg["Oxidizer"] = GetValue(resourceKey("Oxidizer"), false);
+            resource_cfg["SolidFuel"] = GetValue(resourceKey("SolidFuel"), false);
+            resource_cfg["XenonGas"] = GetValue(resourceKey("XenonGas"), true);
+            resource_cfg["IntakeAir"] = GetValue(resourceKey("IntakeAir"), true);
+            resource_cfg["Ablator"] = GetValue(resourceKey("Ablator"), true);
+            resource_cfg["Ore"] = GetValue(resourceKey("Ore"), false);
+            resource_cfg["MonoPropellant"] = GetValue(resourceKey("MonoPropellant"), true);
 
-            string bodyname = GetValue ("selected_body", "Kerbin");
-            selected_body = PSystemManager.Instance.localBodies.Find (b => b.name == bodyname);
-            if (selected_body == null) {
+            string bodyname = GetValue("selected_body", "Kerbin");
+            selected_body = PSystemManager.Instance.localBodies.Find(b => b.name == bodyname);
+            if (selected_body == null)
+            {
                 /* can happen in a corrupted settings.cfg */
                 selected_body = Planetarium.fetch.Home;
             }
 
             Events.ConfigSaving += SaveConfig;
+            if (oldPath || !exists)
+            {
+                PluginKeys.Setup();
+                SaveConfig();
+                oldPath = false;
+            }
         }
 
         public static void SaveConfig ()
         {
-            SetValue ("com_reference"   , (int)com_reference);
-            SetValue ("plugin_mode"     , (int)plugin_mode);
-            SetValue ("shortcut_key"    , PluginKeys.PLUGIN_TOGGLE.primary.ToString());
-            SetValue ("menu_vessel_mass", menu_vessel_mass);
-            SetValue ("menu_res_mass"   , menu_res_mass   );
-            SetValue ("marker_scale"    , marker_scale    );
-            SetValue ("include_rcs"     , include_rcs     );
-            SetValue ("include_wheels"  , include_wheels  );
-            SetValue ("eng_include_rcs" , eng_include_rcs );
-            SetValue ("resource_amount" , resource_amount );
-            SetValue ("use_dry_mass"    , use_dry_mass    );
-            SetValue ("show_marker_com" , show_marker_com );
-            SetValue ("show_marker_dcom", show_marker_dcom);
-            SetValue ("show_marker_acom", show_marker_acom);
-            SetValue ("marker_autoscale", marker_autoscale);
-            SetValue ("selected_body"   , selected_body.name);
-            SetValue ("menu_minimized"  , menu_minimized  );
-            SetValue ("applauncher"     , applauncher     );
-            SetValue ("action_screen"   , action_screen   );
-            SetValue ("toolbar_plugin"  , toolbar_plugin  );
-            SetValue ("window_x"        , window_x        );
-            SetValue ("window_y"        , window_y        );
-            SetValue ("disable_mod_compatibility_check", disable_mod_compatibility_check);
-
+            SetValue("com_reference"   , (int)com_reference);
+            SetValue("plugin_mode"     , (int)plugin_mode);
+            SetValue("shortcut_key"    , PluginKeys.PLUGIN_TOGGLE.primary.ToString());
+            SetValue("menu_vessel_mass", menu_vessel_mass);
+            SetValue("menu_res_mass"   , menu_res_mass   );
+            SetValue("marker_scale"    , marker_scale    );
+            SetValue("include_rcs"     , include_rcs     );
+            SetValue("include_wheels"  , include_wheels  );
+            SetValue("eng_include_rcs" , eng_include_rcs );
+            SetValue("resource_amount" , resource_amount );
+            SetValue("use_dry_mass"    , use_dry_mass    );
+            SetValue("show_marker_com" , show_marker_com );
+            SetValue("show_marker_dcom", show_marker_dcom);
+            SetValue("show_marker_acom", show_marker_acom);
+            SetValue("marker_autoscale", marker_autoscale);
+            SetValue("selected_body"   , selected_body.name);
+            SetValue("menu_minimized"  , menu_minimized  );
+            SetValue("applauncher"     , applauncher     );
+            SetValue("action_screen"   , action_screen   );
+            SetValue("toolbar_plugin"  , toolbar_plugin  );
+            SetValue("window_x"        , window_x        );
+            SetValue("window_y"        , window_y        );
+            SetValue("disable_mod_compatibility_check", disable_mod_compatibility_check);
+            
             if (direction != Direction.none) {
                 SetValue ("direction", (int)direction);
             }
@@ -161,7 +190,17 @@ namespace RCSBuildAid
             foreach (string name in altitude_cfg.Keys) {
                 SetValue (altitudeKey(name), altitude_cfg [name]);
             }
-
+            if (!Directory.Exists(configDir))
+            {
+                try
+                {
+                    Directory.CreateDirectory(configDir);
+                } catch (Exception e)
+                {
+                    Debug.LogWarning(string.Format("RCS Build Aid failed to create the config directory, check the path '{0}' exists", configDir));
+                    return;
+                }
+            }
             try {
                 settings.Save (configAbsolutePath);
             } catch (System.IO.IsolatedStorage.IsolatedStorageException) {
