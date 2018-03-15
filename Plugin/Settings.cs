@@ -28,7 +28,9 @@ namespace RCSBuildAid
         {
             Settings.LoadConfig ();
             Settings.ModCompatibilityCheck ();
+#if false
             new AppLauncher ();
+#endif
         }
     }
 
@@ -63,7 +65,7 @@ namespace RCSBuildAid
         public static bool show_marker_acom;
         public static bool marker_autoscale;
         public static bool menu_minimized;
-        public static bool applauncher;
+        //public static bool applauncher;
         public static bool action_screen;
         public static bool disable_mod_compatibility_check;
         public static int window_x;
@@ -121,7 +123,7 @@ namespace RCSBuildAid
             show_marker_acom = GetValue("show_marker_acom", false);
             marker_autoscale = GetValue("marker_autoscale", true);
             menu_minimized = GetValue("menu_minimized", false);
-            applauncher = GetValue("applauncher", true);
+            //applauncher = GetValue("applauncher", true);
             action_screen = GetValue("action_screen", false);
             toolbar_plugin = GetValue("toolbar_plugin", true);
             window_x = GetValue("window_x", 280);
@@ -174,7 +176,7 @@ namespace RCSBuildAid
             SetValue("marker_autoscale", marker_autoscale);
             SetValue("selected_body"   , selected_body.name);
             SetValue("menu_minimized"  , menu_minimized  );
-            SetValue("applauncher"     , applauncher     );
+            //SetValue("applauncher"     , applauncher     );
             SetValue("action_screen"   , action_screen   );
             SetValue("toolbar_plugin"  , toolbar_plugin  );
             SetValue("window_x"        , window_x        );
@@ -297,13 +299,14 @@ namespace RCSBuildAid
         {
             return "drag_altitude_" + name;
         }
-
+#if false
         public static void setupToolbar(bool value) {
             Settings.toolbar_plugin = value;
             if (toolbarSetup != null) {
                 toolbarSetup ();
             }
         }
+#endif
     }
 
     public static class PluginKeys 

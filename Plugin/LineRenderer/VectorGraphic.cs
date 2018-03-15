@@ -59,8 +59,11 @@ namespace RCSBuildAid
         protected override void Awake ()
         {
             base.Awake ();
-            line.SetVertexCount (2);
-            lineEnd.SetVertexCount(2);
+            //line.SetVertexCount (2);
+            line.positionCount = 2;
+
+            //lineEnd.SetVertexCount(2);
+            lineEnd.positionCount = 2;
         }
 
         protected override void LateUpdate ()

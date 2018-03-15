@@ -18,6 +18,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ClickThroughFix;
 
 namespace RCSBuildAid
 {
@@ -180,7 +181,7 @@ namespace RCSBuildAid
 
         void OnGUI()
         {
-            winRect = GUILayout.Window (winId, winRect, drawWindow, title);
+            winRect = ClickThruBlocker.GUILayoutWindow (winId, winRect, drawWindow, title);
         }
 
         void drawWindow (int id)

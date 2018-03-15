@@ -47,8 +47,13 @@ namespace RCSBuildAid
 
         public override void setWidth (float v2)
         {
-            line.SetWidth (v2, v2);
-            lineEnd.SetWidth (v2 * 3, 0);
+            //line.SetWidth (v2, v2);
+            line.startWidth = v2;
+            line.endWidth = v2;
+
+            //lineEnd.SetWidth (v2 * 3, 0);
+            lineEnd.startWidth = v2 * 3;
+            lineEnd.endWidth = 0;
         }
 
         protected override void Awake ()

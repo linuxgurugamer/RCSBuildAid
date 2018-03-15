@@ -14,7 +14,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#if false
+ using System;
+using UnityEngine;
+using System.Collections.Generic;
+using KSP.IO;
+using System.Linq;
+
+
 using KSP.UI.Screens;
+using ToolbarControl_NS;
 
 namespace RCSBuildAid
 {
@@ -22,7 +31,8 @@ namespace RCSBuildAid
     {
         public static AppLauncher instance;
 
-        static ApplicationLauncherButton button;
+        //static ApplicationLauncherButton button;
+        ToolbarControl toolbarControl;
 
         const string iconPath = "RCSBuildAid/Textures/iconAppLauncher";
         const ApplicationLauncher.AppScenes visibleScenes = 
@@ -61,9 +71,11 @@ namespace RCSBuildAid
         }
 
         void _addButton(){
-            if (button != null) {
+            if (toolbarControl != null) {
                 return;
             }
+            
+
             button = ApplicationLauncher.Instance.AddModApplication (onTrue, onFalse, null, null,
                 null, null, visibleScenes, GameDatabase.Instance.GetTexture(iconPath, false));
             if (RCSBuildAid.Enabled) {
@@ -111,3 +123,4 @@ namespace RCSBuildAid
     }
 }
 
+ #endif

@@ -20,6 +20,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
+using KSP.UI.Screens;
+
+using ClickThroughFix;
+using ToolbarControl_NS;
+
 namespace RCSBuildAid
 {
     public class MainWindow : MonoBehaviour
@@ -76,6 +81,41 @@ namespace RCSBuildAid
             get { return Settings.EnabledModes.Count; }
         }
 
+        ToolbarControl toolbarControl;
+        const ApplicationLauncher.AppScenes visibleScenes =
+           ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.VAB;
+        const string iconPath = "RCSBuildAid/Textures/iconAppLauncher";
+        const string iconPathActive = "RCSBuildAid/Textures/iconAppLauncher_active";
+        const string toolbarIconPath = "RCSBuildAid/Textures/iconToolbar";
+        const string toolbarIconPathActive = "RCSBuildAid/Textures/iconToolbar_active";
+
+        void Start()
+        {
+            pluginShortcut = new KeybindConfig(PluginKeys.PLUGIN_TOGGLE);
+           
+            toolbarControl = gameObject.AddComponent<ToolbarControl>();
+            toolbarControl.AddToAllToolbars(onTrue, onFalse,
+                visibleScenes,
+                "RCSBuildAid",
+                "RCSBuildAidButton",
+                iconPathActive,
+                iconPath,
+                toolbarIconPathActive,
+                toolbarIconPath,
+                "RCS Build Aid"
+            );
+            toolbarControl.UseBlizzy(Settings.toolbar_plugin);
+        }
+
+        void onTrue()
+        {
+            RCSBuildAid.SetActive(true);
+        }
+
+        void onFalse()
+        {
+            RCSBuildAid.SetActive(false);
+        }
         void Awake ()
         {
             winID = gameObject.GetInstanceID ();
@@ -100,11 +140,6 @@ namespace RCSBuildAid
             Events.ConfigSaving -= save;
         }
 
-        void Start ()
-        {
-            pluginShortcut = new KeybindConfig (PluginKeys.PLUGIN_TOGGLE);
-        }
-
         void load ()
         {
             /* check if within screen */
@@ -120,6 +155,9 @@ namespace RCSBuildAid
 
         void OnGUI ()
         {
+            if (toolbarControl != null)
+                toolbarControl.UseBlizzy(Settings.toolbar_plugin);
+
             if (style == null) {
                 style = new Style ();
             }
@@ -127,12 +165,12 @@ namespace RCSBuildAid
             if (RCSBuildAid.Enabled) {
                 if (minimized) {
                     winRect.height = Style.main_window_minimized_height;
-                    winRect = GUI.Window (winID, winRect, drawWindowMinimized, title, style.mainWindowMinimized);
+                    winRect = ClickThruBlocker.GUIWindow (winID, winRect, drawWindowMinimized, title, style.mainWindowMinimized);
                 } else {
                     if (Event.current.type == EventType.Layout) {
                         winRect.height = Style.main_window_height;
                     }
-                    winRect = GUILayout.Window (winID, winRect, drawWindow, title, style.mainWindow);
+                    winRect = ClickThruBlocker.GUILayoutWindow (winID, winRect, drawWindow, title, style.mainWindow);
 
                     cBodyListEnabled = cBodyListEnabled && (RCSBuildAid.Mode == cBodyListMode);
                     if (cBodyListEnabled) {
@@ -147,7 +185,7 @@ namespace RCSBuildAid
                             winCBodyListRect.width = Style.cbody_list_width;
                             winCBodyListRect.height = Style.main_window_height;
                         }
-                        winCBodyListRect = GUILayout.Window (winID + 1, winCBodyListRect, 
+                        winCBodyListRect = ClickThruBlocker.GUILayoutWindow (winID + 1, winCBodyListRect, 
                                                              drawBodyListWindow,
                                                              "Celestial bodies", MainWindow.style.RCSBA_Skin.box);
                     } 
@@ -306,11 +344,13 @@ namespace RCSBuildAid
         void drawSettings ()
         {
             GUILayout.Label ("Settings", style.resourceTableName);
-            GUI.enabled = Settings.toolbar_plugin_loaded;
+            //GUI.enabled = Settings.toolbar_plugin_loaded;
+#if false
             bool applauncher = Settings.applauncher;
             applauncher = GUILayout.Toggle (applauncher, "Use application launcher");
             if (applauncher != Settings.applauncher) {
                 Settings.applauncher = applauncher;
+#if false
                 if (applauncher) {
                     AppLauncher.instance.addButton ();
                 } else {
@@ -319,12 +359,17 @@ namespace RCSBuildAid
                         Settings.setupToolbar (true);
                     }
                 }
+#endif
             }
-            GUI.enabled = Settings.toolbar_plugin_loaded && Settings.applauncher;
-            bool toolbar = Settings.toolbar_plugin;
+#endif
+                //GUI.enabled = Settings.toolbar_plugin_loaded && Settings.applauncher;
+                bool toolbar = Settings.toolbar_plugin;
             toolbar = GUILayout.Toggle (toolbar, "Use blizzy's toolbar");
             if (Settings.toolbar_plugin != toolbar) {
-                Settings.setupToolbar (toolbar);
+                    Settings.toolbar_plugin = toolbar;
+#if false
+                    Settings.setupToolbar (toolbar);
+#endif
             }
             GUI.enabled = true;
             Settings.action_screen = GUILayout.Toggle (Settings.action_screen, "Show in Action Groups");
