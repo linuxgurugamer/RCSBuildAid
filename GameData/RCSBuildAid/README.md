@@ -9,7 +9,11 @@ rocket, and a bit more.
 Requirements
 ------------
 
-* KSP version 1.3.1
+* KSP version 1.4.1
+
+* ToolbarController
+* ClickThroughBlocker
+
 
 Optional
 ~~~~~~~~
@@ -21,6 +25,8 @@ Installation
 ------------
 
 Just copy RCSBuildAid directory into your KSP's GameData directory. 
+
+**** For 0.9.6 and beyond, you must also install the ToolbarController and the ClickThroughBlocker
 
 Features
 --------

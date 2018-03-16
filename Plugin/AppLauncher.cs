@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#if false
+#if true
  using System;
 using UnityEngine;
 using System.Collections.Generic;
@@ -32,18 +32,23 @@ namespace RCSBuildAid
         public static AppLauncher instance;
 
         //static ApplicationLauncherButton button;
-        ToolbarControl toolbarControl;
-
-        const string iconPath = "RCSBuildAid/Textures/iconAppLauncher";
+        
         const ApplicationLauncher.AppScenes visibleScenes = 
             ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.VAB;
 
+        internal static ToolbarControl toolbarControl;
 
-        public AppLauncher ()
+        const string iconPath = "RCSBuildAid/Textures/iconAppLauncher";
+        const string iconPathActive = "RCSBuildAid/Textures/iconAppLauncher_active";
+        const string toolbarIconPath = "RCSBuildAid/Textures/iconToolbar";
+        const string toolbarIconPathActive = "RCSBuildAid/Textures/iconToolbar_active";
+
+        public AppLauncher(GameObject gameObject)
         {
+            Log.Info("AppLauncher instantiation");
             if (instance == null) {
                 instance = this;
-
+#if false
                 if (!Settings.toolbar_plugin_loaded) {
                     Settings.applauncher = true;
                 }
@@ -51,9 +56,32 @@ namespace RCSBuildAid
                 if (Settings.applauncher) {
                     addButton ();
                 }
+#endif
             }
-        }
 
+#if true
+            toolbarControl = gameObject.AddComponent<ToolbarControl>();
+            toolbarControl.AddToAllToolbars(onTrue, onFalse,
+                visibleScenes,
+                "RCSBuildAid",
+                "RCSBuildAidButton",
+                iconPathActive,
+                iconPath,
+                toolbarIconPathActive,
+                toolbarIconPath,
+                "RCS Build Aid"
+            );
+            toolbarControl.UseBlizzy(Settings.toolbar_plugin);
+
+            if (RCSBuildAid.Enabled)
+            {
+                toolbarControl.SetTrue(false);
+            }
+            Events.PluginEnabled += onPluginEnable;
+            Events.PluginDisabled += onPluginDisable;
+#endif
+        }
+#if false
         public void addButton () {
             if (ApplicationLauncher.Ready) {
                 _addButton ();
@@ -98,7 +126,7 @@ namespace RCSBuildAid
         {
             _removeButton ();
         }
-
+#endif
         void onTrue ()
         {
             RCSBuildAid.SetActive (true);
@@ -111,16 +139,22 @@ namespace RCSBuildAid
 
         void onPluginEnable(bool byUser) {
             if (byUser) {
+                toolbarControl.SetTrue(false);
+#if false
                 button.SetTrue (false);
+#endif
             }
         }
 
         void onPluginDisable(bool byUser) {
             if (byUser) {
+                toolbarControl.SetFalse(false);
+#if false
                 button.SetFalse (false);
+#endif
             }
         }
     }
 }
 
- #endif
+#endif

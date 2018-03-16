@@ -28,9 +28,13 @@ namespace RCSBuildAid
         {
             Settings.LoadConfig ();
             Settings.ModCompatibilityCheck ();
-#if false
-            new AppLauncher ();
+#if true
+            new AppLauncher (this.gameObject);
 #endif
+        }
+        void Start()
+        {
+            DontDestroyOnLoad(this);
         }
     }
 
@@ -65,7 +69,7 @@ namespace RCSBuildAid
         public static bool show_marker_acom;
         public static bool marker_autoscale;
         public static bool menu_minimized;
-        //public static bool applauncher;
+        public static bool applauncher;
         public static bool action_screen;
         public static bool disable_mod_compatibility_check;
         public static int window_x;

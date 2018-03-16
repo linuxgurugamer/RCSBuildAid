@@ -35,7 +35,7 @@ namespace RCSBuildAid
         bool modeSelect;
         bool softLock;
         bool settings;
-        const string title = "RCS Build Aid v0.9.5";
+        const string title = "RCS Build Aid";
 
         KeybindConfig pluginShortcut;
 
@@ -81,41 +81,14 @@ namespace RCSBuildAid
             get { return Settings.EnabledModes.Count; }
         }
 
-        ToolbarControl toolbarControl;
-        const ApplicationLauncher.AppScenes visibleScenes =
-           ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.VAB;
-        const string iconPath = "RCSBuildAid/Textures/iconAppLauncher";
-        const string iconPathActive = "RCSBuildAid/Textures/iconAppLauncher_active";
-        const string toolbarIconPath = "RCSBuildAid/Textures/iconToolbar";
-        const string toolbarIconPathActive = "RCSBuildAid/Textures/iconToolbar_active";
+
 
         void Start()
         {
             pluginShortcut = new KeybindConfig(PluginKeys.PLUGIN_TOGGLE);
-           
-            toolbarControl = gameObject.AddComponent<ToolbarControl>();
-            toolbarControl.AddToAllToolbars(onTrue, onFalse,
-                visibleScenes,
-                "RCSBuildAid",
-                "RCSBuildAidButton",
-                iconPathActive,
-                iconPath,
-                toolbarIconPathActive,
-                toolbarIconPath,
-                "RCS Build Aid"
-            );
-            toolbarControl.UseBlizzy(Settings.toolbar_plugin);
         }
 
-        void onTrue()
-        {
-            RCSBuildAid.SetActive(true);
-        }
 
-        void onFalse()
-        {
-            RCSBuildAid.SetActive(false);
-        }
         void Awake ()
         {
             winID = gameObject.GetInstanceID ();
@@ -133,6 +106,13 @@ namespace RCSBuildAid
 #if DEBUG
             gameObject.AddComponent<MenuDebug> ();
 #endif
+        }
+
+
+        internal void Destroy()
+        {
+            Log.Info("MainWindow.Destroy");
+
         }
 
         void OnDestroy ()
@@ -155,8 +135,8 @@ namespace RCSBuildAid
 
         void OnGUI ()
         {
-            if (toolbarControl != null)
-                toolbarControl.UseBlizzy(Settings.toolbar_plugin);
+            if (AppLauncher.instance != null &&  AppLauncher.toolbarControl != null)
+                AppLauncher.toolbarControl.UseBlizzy(Settings.toolbar_plugin);
 
             if (style == null) {
                 style = new Style ();

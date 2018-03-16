@@ -281,7 +281,9 @@ namespace RCSBuildAid
             }
             Events.OnPluginToggled (value, false);
         }
-        
+
+        static AppLauncher appLauncher = null;
+        static bool appLauncherCreated = false;
         public RCSBuildAid ()
         {
             instance = this;
@@ -289,6 +291,13 @@ namespace RCSBuildAid
 
         void Awake ()
         {
+            if (!appLauncherCreated)
+            {
+                appLauncherCreated = true;
+                Log.Info("RCSBuildaid creating AppLauncher");
+                //appLauncher = new AppLauncher(this.gameObject);
+            }
+
             rcsList = new List<PartModule> ();
             engineList = new List<PartModule> ();
 
@@ -310,8 +319,9 @@ namespace RCSBuildAid
         void OnDestroy ()
         {
             events.UnhookEvents ();
-            Events.EditorScreenChanged -= onEditorScreenChanged;
+            Events.EditorScreenChanged -= onEditorScreenChanged;           
         }
+
 
         void onEditorScreenChanged (EditorScreen screen) {
             /* the plugin isn't useful in all the editor screens */
