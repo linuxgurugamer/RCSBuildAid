@@ -129,7 +129,7 @@ namespace RCSBuildAid
             menu_minimized = GetValue("menu_minimized", false);
             //applauncher = GetValue("applauncher", true);
             action_screen = GetValue("action_screen", false);
-            toolbar_plugin = GetValue("toolbar_plugin", true);
+            toolbar_plugin = GetValue("toolbar_plugin", false);
             window_x = GetValue("window_x", 280);
             window_y = GetValue("window_y", 114);
             disable_mod_compatibility_check = GetValue("disable_mod_compatibility_check", false);

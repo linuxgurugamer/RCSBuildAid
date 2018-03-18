@@ -1,3 +1,6 @@
+0.9.6.2
+	Made stock toolbar button the default
+
 0.9.6.1
 	Fix for multiple buttons 
 
