@@ -222,3 +222,4 @@ $RECYCLE.BIN/
 *.pdb
 *.csproj
 *.sln
+.vs

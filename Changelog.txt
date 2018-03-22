@@ -1,3 +1,6 @@
+0.9.6.3
+	Fixed .versionfile, was incorrectly saying this would work on 1.3
+
 0.9.6.2
 	Made stock toolbar button the default
 
