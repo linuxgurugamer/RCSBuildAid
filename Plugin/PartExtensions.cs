@@ -37,14 +37,24 @@ namespace RCSBuildAid
             return part.Modules.Contains ("LaunchClamp");
         }
 
-        public static float GetTotalMass (this Part part) {
+        private static float _GetMass( this Part part, bool WithResources ) {
             var mass = part.partInfo.partPrefab.mass;
-            return mass + part.GetModuleMass (mass) + part.GetResourceMass ();
+            if (Settings.filled_chair && part.name.Equals("seatExternalCmd"))
+            {
+                mass += 0.09375f; /* taken from KSP wiki.  a less lazy me should lookup the in-game value */
+            }
+            if ( WithResources ) {
+                mass += part.GetResourceMass();
+            }
+            return mass;
+        }
+
+        public static float GetTotalMass (this Part part) {
+            return part._GetMass(true);
         }
 
         public static float GetDryMass (this Part part) {
-            var mass = part.partInfo.partPrefab.mass;
-            return mass + part.GetModuleMass (mass);
+            return part._GetMass(false);
         }
 
         public static float GetPhysicslessChildMassInEditor (this Part part) {

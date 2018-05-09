@@ -64,6 +64,7 @@ namespace RCSBuildAid
         public static bool engines_vac;
         public static bool resource_amount;
         public static bool use_dry_mass;
+        public static bool filled_chair;
         public static bool show_marker_com;
         public static bool show_marker_dcom;
         public static bool show_marker_acom;
@@ -122,6 +123,7 @@ namespace RCSBuildAid
             eng_include_rcs = GetValue("eng_include_rcs", false);
             resource_amount = GetValue("resource_amount", false);
             use_dry_mass = GetValue("use_dry_mass", true);
+            filled_chair = GetValue("filled_chair", true);
             show_marker_com = GetValue("show_marker_com", true);
             show_marker_dcom = GetValue("show_marker_dcom", true);
             show_marker_acom = GetValue("show_marker_acom", false);
@@ -174,6 +176,7 @@ namespace RCSBuildAid
             SetValue("eng_include_rcs" , eng_include_rcs );
             SetValue("resource_amount" , resource_amount );
             SetValue("use_dry_mass"    , use_dry_mass    );
+            SetValue("filled_chair"    , filled_chair    );
             SetValue("show_marker_com" , show_marker_com );
             SetValue("show_marker_dcom", show_marker_dcom);
             SetValue("show_marker_acom", show_marker_acom);

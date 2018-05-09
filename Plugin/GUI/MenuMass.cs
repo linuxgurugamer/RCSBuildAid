@@ -46,22 +46,28 @@ namespace RCSBuildAid
             /* Vessel stats */
             GUILayout.BeginVertical ();
             {
-                GUILayout.BeginHorizontal ();
+                GUILayout.BeginHorizontal();
                 {
-                    GUILayout.Label ("Wet mass", MainWindow.style.readoutName);
-                    GUILayout.Label (CoMMarker.Mass.ToString("0.### t"));
+                    GUILayout.Label("Wet mass", MainWindow.style.readoutName);
+                    GUILayout.Label(CoMMarker.Mass.ToString("0.### t"));
                 }
-                GUILayout.EndHorizontal ();
-                GUILayout.BeginHorizontal ();
+                GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button (Settings.use_dry_mass ? "Dry mass" : "Fuel mass",
-                            MainWindow.style.clickLabel, 
-                            GUILayout.Width(Style.readout_label_width))) {
+                    if (GUILayout.Button(Settings.use_dry_mass ? "Dry mass" : "Fuel mass",
+                        MainWindow.style.clickLabel,
+                        GUILayout.Width(Style.readout_label_width)))
+                    {
                         Settings.use_dry_mass = !Settings.use_dry_mass;
                     }
-                    GUILayout.Label (mass.ToString("0.### t"));
+                    GUILayout.Label(mass.ToString("0.### t"));
                 }
-                GUILayout.EndHorizontal ();
+                GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                {
+                    Settings.filled_chair = (GUILayout.Toggle(Settings.filled_chair, "Kerbonaut in Chair"));
+                }
+                GUILayout.EndHorizontal();
             }
             GUILayout.EndVertical ();
         }

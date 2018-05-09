@@ -1,18 +1,18 @@
 {
   "NAME": "RCS Build Aid",
   "URL": "https://github.com/mlheur/RCSBuildAid/edit/master/RCSBuildAid.version",
-  "CHANGE_LOG_URL": "https://raw.githubusercontent.com/linuxgurugamer/RCSBuildAid/master/CHANGELOG.asciidoc",
+  "CHANGE_LOG_URL": "https://raw.githubusercontent.com/mlheur/RCSBuildAid/master/CHANGELOG.asciidoc",
   "DOWNLOAD": "https://github.com/linuxgurugamer/RCSBuildAid/releases",
   "GITHUB": {
-    "USERNAME": "linuxgurugamer",
+    "USERNAME": "mlheur",
     "REPOSITORY": "RCSBuildAid",
     "ALLOW_PRE_RELEASE": false
   },
   "VERSION": {
     "MAJOR": 0,
     "MINOR": 9,
-    "PATCH": 6,
-    "BUILD": 3
+    "PATCH": 7,
+    "BUILD": 0
   },
   "KSP_VERSION": {
     "MAJOR": 1,

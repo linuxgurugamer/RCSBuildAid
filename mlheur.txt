@@ -1,0 +1,12 @@
+# Removed the following post build command from project settings:
+# need to change paths and want to better understand the bat files that came with this first.
+start /D D:\Users\jbb\github\RCSBuildAid /WAIT deploy.bat  $(TargetDir) $(TargetFileName)
+if $(ConfigurationName) == Release (
+     start /D D:\Users\jbb\github\RCSBuildAid /WAIT buildRelease.bat $(TargetDir) $(TargetFileName)
+)
+
+## This gave problems on pre-build
+
+set textTemplatingPath="%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\IDE \texttransform.exe"
+
+%textTemplatingPath% "$(ProjectDir)AssemblyVersion.tt"
