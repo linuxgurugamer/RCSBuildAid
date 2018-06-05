@@ -21,6 +21,7 @@ namespace RCSBuildAid
     public class MenuMass : ToggleableContent
     {
         const string title = "Vessel mass";
+        Vector3 offset = Vector3.zero;
         float mass;
 
         protected override string buttonTitle {
@@ -34,6 +35,7 @@ namespace RCSBuildAid
 
         protected override void update ()
         {
+            offset = RCSBuildAid.CoM.transform.position - RCSBuildAid.DCoM.transform.position;
             if (Settings.use_dry_mass) {
                 mass = DCoMMarker.Mass;
             } else {
@@ -62,6 +64,29 @@ namespace RCSBuildAid
                     }
                     GUILayout.Label(mass.ToString("0.### t"));
                 }
+                GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                Settings.show_dcom_offsets = (GUILayout.Toggle(Settings.show_dcom_offsets, "Show DCOM offsets"));
+                GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                if (Settings.show_dcom_offsets)
+                {
+                    GUILayout.Label("DCoM offset", MainWindow.style.readoutName);
+                    GUILayout.Label(offset.magnitude.ToString("0.## m"));
+                    GUILayout.EndHorizontal();
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Label("  offset X", MainWindow.style.readoutName);
+                    GUILayout.Label(offset.x.ToString("0.## m"));
+                    GUILayout.EndHorizontal();
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Label("  offset Y", MainWindow.style.readoutName);
+                    GUILayout.Label(offset.y.ToString("0.## m"));
+                    GUILayout.EndHorizontal();
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Label("  offset Z", MainWindow.style.readoutName);
+                    GUILayout.Label(offset.z.ToString("0.## m"));
+                }
+
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 {

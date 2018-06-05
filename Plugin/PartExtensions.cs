@@ -39,7 +39,7 @@ namespace RCSBuildAid
 
         private static float GetMass( this Part part, bool WithResources ) {
             var mass = part.partInfo.partPrefab.mass;
-            if (Settings.filled_chair && part.name.Equals("seatExternalCmd"))
+            if (Settings.filled_chair && part.Modules.Contains<KerbalSeat>()) //    .name.Equals("seatExternalCmd"))
             {
                 mass += 0.09375f; /* taken from KSP wiki.  a less lazy me should lookup the in-game value */
             }

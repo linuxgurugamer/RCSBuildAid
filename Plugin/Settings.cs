@@ -65,6 +65,7 @@ namespace RCSBuildAid
         public static bool resource_amount;
         public static bool use_dry_mass;
         public static bool filled_chair;
+        public static bool show_dcom_offsets;
         public static bool show_marker_com;
         public static bool show_marker_dcom;
         public static bool show_marker_acom;
@@ -124,6 +125,7 @@ namespace RCSBuildAid
             resource_amount = GetValue("resource_amount", false);
             use_dry_mass = GetValue("use_dry_mass", true);
             filled_chair = GetValue("filled_chair", true);
+            show_dcom_offsets = GetValue("show_dcom_offsets", true);            
             show_marker_com = GetValue("show_marker_com", true);
             show_marker_dcom = GetValue("show_marker_dcom", true);
             show_marker_acom = GetValue("show_marker_acom", false);
@@ -176,16 +178,15 @@ namespace RCSBuildAid
             SetValue("eng_include_rcs" , eng_include_rcs );
             SetValue("resource_amount" , resource_amount );
             SetValue("use_dry_mass"    , use_dry_mass    );
-            SetValue("filled_chair"    , filled_chair    );
+            SetValue("filled_chair"    , filled_chair);
+            SetValue("show_dcom_offsets", show_dcom_offsets);            
             SetValue("show_marker_com" , show_marker_com );
             SetValue("show_marker_dcom", show_marker_dcom);
             SetValue("show_marker_acom", show_marker_acom);
             SetValue("marker_autoscale", marker_autoscale);
             SetValue("selected_body"   , selected_body.name);
             SetValue("menu_minimized"  , menu_minimized  );
-            //SetValue("applauncher"     , applauncher     );
             SetValue("action_screen"   , action_screen   );
-            //SetValue("toolbar_plugin"  , toolbar_plugin  );
             SetValue("window_x"        , window_x        );
             SetValue("window_y"        , window_y        );
             SetValue("disable_mod_compatibility_check", disable_mod_compatibility_check);

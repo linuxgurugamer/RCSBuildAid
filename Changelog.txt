@@ -1,3 +1,9 @@
+0.9.7
+	Added back display of DCOM offset magnitude
+	Added display of individual DCOM offsets
+	Added toggle to select display of DCOM offsets
+	Fixed command chair option to work with ALL external command seats, not just the stock one
+
 0.9.6.6
 	Actually saved the files this time
 
