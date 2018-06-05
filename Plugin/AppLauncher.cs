@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#if true
+
  using System;
 using UnityEngine;
 using System.Collections.Generic;
@@ -27,6 +27,16 @@ using ToolbarControl_NS;
 
 namespace RCSBuildAid
 {
+    [KSPAddon(KSPAddon.Startup.MainMenu, true)]
+    public class RegisterToolbar : MonoBehaviour
+    {
+        void Start()
+        {
+            ToolbarControl.RegisterMod(AppLauncher.MODID, AppLauncher.MODNAME);
+        }
+    }
+
+
     public class AppLauncher
     {
         public static AppLauncher instance;
@@ -43,35 +53,28 @@ namespace RCSBuildAid
         const string toolbarIconPath = "RCSBuildAid/Textures/iconToolbar";
         const string toolbarIconPathActive = "RCSBuildAid/Textures/iconToolbar_active";
 
+        internal const string MODID = "RCSBuildAid_NS";
+        internal const string MODNAME = "RCS Build Aid";
+
         public AppLauncher(GameObject gameObject)
         {
             Log.Info("AppLauncher instantiation");
             if (instance == null) {
                 instance = this;
-#if false
-                if (!Settings.toolbar_plugin_loaded) {
-                    Settings.applauncher = true;
-                }
 
-                if (Settings.applauncher) {
-                    addButton ();
-                }
-#endif
             }
 
-#if true
             toolbarControl = gameObject.AddComponent<ToolbarControl>();
             toolbarControl.AddToAllToolbars(onTrue, onFalse,
                 visibleScenes,
-                "RCSBuildAid",
+                MODID,
                 "RCSBuildAidButton",
                 iconPathActive,
                 iconPath,
                 toolbarIconPathActive,
                 toolbarIconPath,
-                "RCS Build Aid"
+                MODNAME
             );
-            toolbarControl.UseBlizzy(Settings.toolbar_plugin);
 
             if (RCSBuildAid.Enabled)
             {
@@ -79,54 +82,9 @@ namespace RCSBuildAid
             }
             Events.PluginEnabled += onPluginEnable;
             Events.PluginDisabled += onPluginDisable;
-#endif
-        }
-#if false
-        public void addButton () {
-            if (ApplicationLauncher.Ready) {
-                _addButton ();
-            }
-            GameEvents.onGUIApplicationLauncherReady.Add(_addButton);
-            GameEvents.onGUIApplicationLauncherUnreadifying.Add (_removeButton);
+
         }
 
-        public void removeButton () {
-            if (ApplicationLauncher.Ready) {
-                _removeButton ();
-            }
-            GameEvents.onGUIApplicationLauncherReady.Remove(_addButton);
-            GameEvents.onGUIApplicationLauncherUnreadifying.Remove(_removeButton);
-        }
-
-        void _addButton(){
-            if (toolbarControl != null) {
-                return;
-            }
-            
-
-            button = ApplicationLauncher.Instance.AddModApplication (onTrue, onFalse, null, null,
-                null, null, visibleScenes, GameDatabase.Instance.GetTexture(iconPath, false));
-            if (RCSBuildAid.Enabled) {
-                button.SetTrue (false);
-            }
-            Events.PluginEnabled += onPluginEnable;
-            Events.PluginDisabled += onPluginDisable;
-        }
-
-        void _removeButton () {
-            if (button != null) {
-                ApplicationLauncher.Instance.RemoveModApplication (button);
-                button = null;
-                Events.PluginEnabled -= onPluginEnable;
-                Events.PluginDisabled -= onPluginDisable;
-            }
-        }
-
-        void _removeButton(GameScenes scene)
-        {
-            _removeButton ();
-        }
-#endif
         void onTrue ()
         {
             RCSBuildAid.SetActive (true);
@@ -140,21 +98,14 @@ namespace RCSBuildAid
         void onPluginEnable(bool byUser) {
             if (byUser) {
                 toolbarControl.SetTrue(false);
-#if false
-                button.SetTrue (false);
-#endif
             }
         }
 
         void onPluginDisable(bool byUser) {
             if (byUser) {
                 toolbarControl.SetFalse(false);
-#if false
-                button.SetFalse (false);
-#endif
             }
         }
     }
 }
 
-#endif

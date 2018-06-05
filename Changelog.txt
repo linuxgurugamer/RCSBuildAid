@@ -1,3 +1,9 @@
+0.9.6.4
+	Thanks to github user @mlheiu:
+		added Kerbal mass to Command Chair option
+	Updated version for all of 1.4
+	Updated to latest version of ToolbarController, now registers with toolbarController
+
 0.9.6.3
 	Fixed .versionfile, was incorrectly saying this would work on 1.3
 

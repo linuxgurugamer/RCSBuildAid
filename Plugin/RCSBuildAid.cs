@@ -282,7 +282,7 @@ namespace RCSBuildAid
             Events.OnPluginToggled (value, false);
         }
 
-        static AppLauncher appLauncher = null;
+        //static AppLauncher appLauncher = null;
         static bool appLauncherCreated = false;
         public RCSBuildAid ()
         {

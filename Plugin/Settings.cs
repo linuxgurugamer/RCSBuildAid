@@ -48,8 +48,8 @@ namespace RCSBuildAid
         static bool oldPath = true;
         static ConfigNode settings;
 
-        public static bool toolbar_plugin_loaded;
-        public static bool toolbar_plugin;
+        //public static bool toolbar_plugin_loaded;
+        //public static bool toolbar_plugin;
         public static Action toolbarSetup;
 
         public static MarkerType com_reference;
@@ -64,6 +64,7 @@ namespace RCSBuildAid
         public static bool engines_vac;
         public static bool resource_amount;
         public static bool use_dry_mass;
+        public static bool filled_chair;
         public static bool show_marker_com;
         public static bool show_marker_dcom;
         public static bool show_marker_acom;
@@ -122,6 +123,7 @@ namespace RCSBuildAid
             eng_include_rcs = GetValue("eng_include_rcs", false);
             resource_amount = GetValue("resource_amount", false);
             use_dry_mass = GetValue("use_dry_mass", true);
+            filled_chair = GetValue("filled_chair", true);
             show_marker_com = GetValue("show_marker_com", true);
             show_marker_dcom = GetValue("show_marker_dcom", true);
             show_marker_acom = GetValue("show_marker_acom", false);
@@ -129,7 +131,7 @@ namespace RCSBuildAid
             menu_minimized = GetValue("menu_minimized", false);
             //applauncher = GetValue("applauncher", true);
             action_screen = GetValue("action_screen", false);
-            toolbar_plugin = GetValue("toolbar_plugin", false);
+//            toolbar_plugin = GetValue("toolbar_plugin", false);
             window_x = GetValue("window_x", 280);
             window_y = GetValue("window_y", 114);
             disable_mod_compatibility_check = GetValue("disable_mod_compatibility_check", false);
@@ -174,6 +176,7 @@ namespace RCSBuildAid
             SetValue("eng_include_rcs" , eng_include_rcs );
             SetValue("resource_amount" , resource_amount );
             SetValue("use_dry_mass"    , use_dry_mass    );
+            SetValue("filled_chair"    , filled_chair    );
             SetValue("show_marker_com" , show_marker_com );
             SetValue("show_marker_dcom", show_marker_dcom);
             SetValue("show_marker_acom", show_marker_acom);
@@ -182,7 +185,7 @@ namespace RCSBuildAid
             SetValue("menu_minimized"  , menu_minimized  );
             //SetValue("applauncher"     , applauncher     );
             SetValue("action_screen"   , action_screen   );
-            SetValue("toolbar_plugin"  , toolbar_plugin  );
+            //SetValue("toolbar_plugin"  , toolbar_plugin  );
             SetValue("window_x"        , window_x        );
             SetValue("window_y"        , window_y        );
             SetValue("disable_mod_compatibility_check", disable_mod_compatibility_check);
