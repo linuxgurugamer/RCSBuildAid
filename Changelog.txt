@@ -1,3 +1,7 @@
+0.9.6.5
+	Updated version properly
+	Added dependency checks
+
 0.9.6.4
 	Thanks to github user @mlheiu:
 		added Kerbal mass to Command Chair option
