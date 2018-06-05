@@ -22,3 +22,6 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyProduct("RCSBuildAid")]
 [assembly: AssemblyCopyright("Copyright © 2013-2016, Elián Hanisch. Distributed under the terms of the LGPLv3")]
 //[assembly: AssemblyVersion("0.9.1.*")]
+
+[assembly: KSPAssemblyDependency("ClickThroughBlocker", 1, 0)]
+[assembly: KSPAssemblyDependency("ToolbarController", 1, 0)]

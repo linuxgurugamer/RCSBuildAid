@@ -1,3 +1,6 @@
+0.9.6.6
+	Actually saved the files this time
+
 0.9.6.5
 	Updated version properly
 	Added dependency checks
