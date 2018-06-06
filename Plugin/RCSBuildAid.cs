@@ -294,7 +294,7 @@ namespace RCSBuildAid
             {
                 appLauncherCreated = true;
                 Log.Info("RCSBuildaid creating AppLauncher");
-                //appLauncher = new AppLauncher(this.gameObject);
+                //var appLauncher = new AppLauncher(this.gameObject);
             }
 
             rcsList = new List<PartModule> ();

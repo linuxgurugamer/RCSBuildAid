@@ -27,15 +27,6 @@ using ToolbarControl_NS;
 
 namespace RCSBuildAid
 {
-    [KSPAddon(KSPAddon.Startup.MainMenu, true)]
-    public class RegisterToolbar : MonoBehaviour
-    {
-        void Start()
-        {
-            ToolbarControl.RegisterMod(AppLauncher.MODID, AppLauncher.MODNAME);
-        }
-    }
-
 
     public class AppLauncher
     {
@@ -63,6 +54,9 @@ namespace RCSBuildAid
                 instance = this;
 
             }
+            Log.Info("iconPathActive: " + iconPathActive + ", iconPath: " + iconPath);
+            Log.Info("toolbarIconPathActive: " + toolbarIconPathActive + ", toolbarIconPath: " + toolbarIconPath);
+
 
             toolbarControl = gameObject.AddComponent<ToolbarControl>();
             toolbarControl.AddToAllToolbars(onTrue, onFalse,
@@ -84,7 +78,7 @@ namespace RCSBuildAid
             Events.PluginDisabled += onPluginDisable;
 
         }
-
+ 
         void onTrue ()
         {
             RCSBuildAid.SetActive (true);

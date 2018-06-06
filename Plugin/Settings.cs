@@ -18,23 +18,24 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
+using ToolbarControl_NS;
 
 namespace RCSBuildAid
 {
+
     [KSPAddon(KSPAddon.Startup.MainMenu, true)]
     public class SettingsLoader : MonoBehaviour
     {
-        SettingsLoader ()
-        {
-            Settings.LoadConfig ();
-            Settings.ModCompatibilityCheck ();
-#if true
-            new AppLauncher (this.gameObject);
-#endif
-        }
         void Start()
         {
             DontDestroyOnLoad(this);
+            ToolbarControl.RegisterMod(AppLauncher.MODID, AppLauncher.MODNAME);
+
+            Settings.LoadConfig();
+            Settings.ModCompatibilityCheck();
+#if true
+            new AppLauncher(this.gameObject);
+#endif
         }
     }
 

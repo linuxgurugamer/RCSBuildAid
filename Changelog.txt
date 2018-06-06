@@ -1,3 +1,6 @@
+0.9.7.1
+	Fixed race condition where sometimes the toolbar was being created before it was registered, causing it to not show up
+
 0.9.7
 	Added back display of DCOM offset magnitude
 	Added display of individual DCOM offsets
