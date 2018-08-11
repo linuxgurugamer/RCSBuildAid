@@ -257,6 +257,7 @@ namespace RCSBuildAid
         abstract protected void drawContent ();
         abstract protected string title { get; }
     }
+    
 
     public class DebugVesselTree : DebugWindow
     {
@@ -416,4 +417,3 @@ namespace RCSBuildAid
         #endregion
     }
 }
-

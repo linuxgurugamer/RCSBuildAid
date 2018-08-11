@@ -1,3 +1,6 @@
+0.9.7.2
+	Fixed mass calculations for KIS containers
+
 0.9.7.1
 	Fixed race condition where sometimes the toolbar was being created before it was registered, causing it to not show up
 
