@@ -1,3 +1,6 @@
+0.9.7.3
+	Version bump for 1.5 rebuild
+
 0.9.7.2
 	Fixed mass calculations for KIS containers
 
