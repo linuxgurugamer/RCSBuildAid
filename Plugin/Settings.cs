@@ -33,7 +33,7 @@ namespace RCSBuildAid
 
             Settings.LoadConfig();
             Settings.ModCompatibilityCheck();
-#if true
+#if false
             new AppLauncher(this.gameObject);
 #endif
         }

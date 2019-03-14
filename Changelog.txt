@@ -1,3 +1,6 @@
+0.9.7.5
+	Fixed stock toolbar button from sometimes appearing on the Space Center scene
+
 0.9.7.3
 	Version bump for 1.5 rebuild
 
