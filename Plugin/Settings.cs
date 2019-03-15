@@ -29,13 +29,10 @@ namespace RCSBuildAid
         void Start()
         {
             DontDestroyOnLoad(this);
-            ToolbarControl.RegisterMod(AppLauncher.MODID, AppLauncher.MODNAME);
+            ToolbarControl.RegisterMod(RCSBuildAid.MODID, RCSBuildAid.MODNAME);
 
             Settings.LoadConfig();
             Settings.ModCompatibilityCheck();
-#if false
-            new AppLauncher(this.gameObject);
-#endif
         }
     }
 
@@ -206,7 +203,7 @@ namespace RCSBuildAid
                 try
                 {
                     Directory.CreateDirectory(configDir);
-                } catch (Exception e)
+                } catch
                 {
                     Debug.LogWarning(string.Format("RCS Build Aid failed to create the config directory, check the path '{0}' exists", configDir));
                     return;
@@ -308,14 +305,6 @@ namespace RCSBuildAid
         {
             return "drag_altitude_" + name;
         }
-#if false
-        public static void setupToolbar(bool value) {
-            Settings.toolbar_plugin = value;
-            if (toolbarSetup != null) {
-                toolbarSetup ();
-            }
-        }
-#endif
     }
 
     public static class PluginKeys 

@@ -362,16 +362,6 @@ namespace RCSBuildAid
         {
             GUILayout.Label("Settings", style.resourceTableName);
 
-            //GUI.enabled = Settings.toolbar_plugin_loaded && Settings.applauncher;
-#if false
-            bool toolbar = Settings.toolbar_plugin;
-            toolbar = GUILayout.Toggle(toolbar, "Use blizzy's toolbar");
-            if (Settings.toolbar_plugin != toolbar)
-            {
-                Settings.toolbar_plugin = toolbar;
-
-            }
-#endif
             GUI.enabled = true;
             Settings.action_screen = GUILayout.Toggle(Settings.action_screen, "Show in Action Groups");
             Settings.marker_autoscale = GUILayout.Toggle(Settings.marker_autoscale, "Marker autoscaling");

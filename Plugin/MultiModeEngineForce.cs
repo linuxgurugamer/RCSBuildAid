@@ -34,7 +34,7 @@ namespace RCSBuildAid
                 {
                     // Try this, it works most of the time
                     return modes[module.mode];
-                } catch (Exception e)
+                } catch 
                 {
                     if (module.mode == module.primaryEngineModeDisplayName)
                         return modes[module.primaryEngineID];
