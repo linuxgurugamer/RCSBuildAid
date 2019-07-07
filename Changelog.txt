@@ -1,3 +1,7 @@
+0.9.8
+	Version bump for 1.7.2
+	Updated AssemblyVersion.tt
+
 0.9.7.6
 	Removed unnecessary AppLauncher method
 	Moved toolbar creation into main RCSBuildAid method, fixes the button disappearing after going into flight scene

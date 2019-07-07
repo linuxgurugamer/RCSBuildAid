@@ -345,10 +345,6 @@ namespace RCSBuildAid
 
         public void InitToolbar()
         {
-            Log.Info("iconPathActive: " + iconPathActive + ", iconPath: " + iconPath);
-            Log.Info("toolbarIconPathActive: " + toolbarIconPathActive + ", toolbarIconPath: " + toolbarIconPath);
-
-
             toolbarControl = RCSBuildAid.instance.gameObject.AddComponent<ToolbarControl>();
             toolbarControl.AddToAllToolbars(onTrue, onFalse,
                 visibleScenes,
