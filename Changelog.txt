@@ -1,3 +1,9 @@
+ChangeLog
+
+0.10.0
+	Added InstallChecker
+	Updated for KSP 1.8
+
 0.9.8
 	Version bump for 1.7.2
 	Updated AssemblyVersion.tt

@@ -35,7 +35,7 @@ namespace RCSBuildAid
         protected float lenght;
         protected float width;
 
-        [SerializeField]
+        //[SerializeField]
         GUIText debugLabel;
 
         protected override void enableLines (bool value)

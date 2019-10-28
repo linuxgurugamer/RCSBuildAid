@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FCF08142-4F03-420C-9D2B-F783D8E22AAB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>RCSBuildAid</RootNamespace>
+    <AssemblyName>RCSBuildAid</AssemblyName>
+    <ReleaseVersion>0.7</ReleaseVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AssemblyVersion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyVersion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Debug.cs" />
+    <Compile Include="DeltaV.cs" />
+    <Compile Include="log.cs" />
+    <Compile Include="ModuleForces.cs" />
+    <Compile Include="MomentOfInertia.cs" />
+    <Compile Include="PartExtensions.cs" />
+    <Compile Include="RCSBuildAid.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="MarkerForces.cs" />
+    <Compile Include="GUI\Style.cs" />
+    <Compile Include="GUI\MenuMass.cs" />
+    <Compile Include="GUI\MenuResources.cs" />
+    <Compile Include="GUI\ToggleableContent.cs" />
+    <Compile Include="GUI\MenuTranslation.cs" />
+    <Compile Include="GUI\MenuEngines.cs" />
+    <Compile Include="GUI\MenuAttitude.cs" />
+    <Compile Include="GUI\MenuMarkers.cs" />
+    <Compile Include="GUI\MenuDebug.cs" />
+    <Compile Include="GUI\MainWindow.cs" />
+    <Compile Include="GUI\ModeContent.cs" />
+    <Compile Include="DragForce.cs" />
+    <Compile Include="GUI\MenuParachutes.cs" />
+    <Compile Include="Events.cs" />
+    <Compile Include="GimbalRotation.cs" />
+    <Compile Include="EditorUtils.cs" />
+    <Compile Include="CelestialBodyExtensions.cs" />
+    <Compile Include="CoDMarker.cs" />
+    <Compile Include="DragCubeVector.cs" />
+    <Compile Include="RCSForce.cs" />
+    <Compile Include="EngineForce.cs" />
+    <Compile Include="MultiModeEngineForce.cs" />
+    <Compile Include="MassEditorMarker.cs" />
+    <Compile Include="CoMMarker.cs" />
+    <Compile Include="DCoMMarker.cs" />
+    <Compile Include="AverageMarker.cs" />
+    <Compile Include="LineRenderer\VectorGraphic.cs" />
+    <Compile Include="LineRenderer\MarkerVectorGraphic.cs" />
+    <Compile Include="LineRenderer\CircularVectorGraphic.cs" />
+    <Compile Include="LineRenderer\CrossMarkGraphic.cs" />
+    <Compile Include="LineRenderer\ArrowBase.cs" />
+    <Compile Include="LineRenderer\LineBase.cs" />
+    <Compile Include="MarkerManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AssemblyVersion.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyVersion.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>R:\KSP_1.7.3_dev\KSP_x64_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>R:\KSP_1.7.3_dev\KSP_x64_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="ClickThroughBlocker, Version=0.1.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>R:\KSP_1.7.3_dev\GameData\000_ClickThroughBlocker\Plugins\ClickThroughBlocker.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="ToolbarControl">
+      <HintPath>R:\KSP_1.7.3_dev\GameData\001_ToolbarControl\Plugins\ToolbarControl.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>R:\KSP_1.7.3_dev\KSP_x64_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>R:\KSP_1.7.3_dev\KSP_x64_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+set textTemplatingPath="%25ProgramFiles(x86)%25\Microsoft Visual Studio\2017\Community\Common7\IDE \texttransform.exe"
+
+%25textTemplatingPath%25 "$(ProjectDir)AssemblyVersion.tt"</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>start /D D:\Users\jbb\github\RCSBuildAid /WAIT deploy.bat  $(TargetDir) $(TargetFileName)
+
+
+
+if $(ConfigurationName) == Release (
+
+     start /D D:\Users\jbb\github\RCSBuildAid /WAIT buildRelease.bat $(TargetDir) $(TargetFileName)
+
+)
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>
