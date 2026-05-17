@@ -39,7 +39,7 @@ namespace RCSBuildAid
 #if DEBUG
     [KSPAddon(KSPAddon.Startup.Flight, false)]
 #endif
-    [RequireComponent(typeof(GUIText))]
+    [RequireComponent(typeof(TextMesh))]
     public class InFlightReadings : MonoBehaviour
     {
         Vessel vessel;
@@ -51,7 +51,7 @@ namespace RCSBuildAid
         double maxAcc;
 
         DebugVesselTree vesselTreeWindow;
-        GUIText guiText;
+        TextMesh guiText;
 
         void Start ()
         {
@@ -60,7 +60,7 @@ namespace RCSBuildAid
                 return;
             }
 
-            guiText = gameObject.GetComponent<GUIText> ();
+            guiText = gameObject.GetComponent<TextMesh> ();
             guiText.transform.position = new Vector3 (0.82f, 0.94f, 0f);
             vessel = FlightGlobals.ActiveVessel;
             guiText.text = "no vessel";
@@ -177,4 +177,3 @@ namespace RCSBuildAid
         }
     }
 }
-

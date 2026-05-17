@@ -4,6 +4,13 @@ v1.0.6, January 2021:
 
 This document lists important changes between versions.
 
+== Version 1.0.7
+*Release date: TBD*
+
+* Update for KSP 1.12.5.
+* Replace removed Unity `GUIText` debug labels with `TextMesh` so the plugin
+  compiles against KSP 1.12.5's Unity assemblies.
+
 == Version 1.0.6
 *Release date: 31/01/2021*
 
