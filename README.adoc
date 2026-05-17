@@ -11,7 +11,7 @@ image::intro.jpg[width="600",align="center"]
 
 == Requirements
 
-* KSP version 1.11.x
+* KSP version 1.11.x - 1.12.x
 
 === Supported mods
 

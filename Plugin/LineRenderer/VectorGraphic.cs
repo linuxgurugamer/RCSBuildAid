@@ -29,12 +29,12 @@ namespace RCSBuildAid
         protected float width;
 
         [SerializeField]
-        GUIText debugLabel;
+        TextMesh debugLabel;
 
         [Conditional("DEBUG")]
         void enableDebugLabel (bool v) {
             if (debugLabel != null) {
-                debugLabel.enabled = v;
+                debugLabel.gameObject.SetActive(v);
             }
         }
 
@@ -82,9 +82,9 @@ namespace RCSBuildAid
                 if (debugLabel == null) {
                     var obj = new GameObject ("VectorGraphic debug label");
                     obj.transform.parent = transform;
-                    debugLabel = obj.AddComponent<GUIText> ();
+                    debugLabel = obj.AddComponent<TextMesh> ();
                 }
-                debugLabel.enabled = true;
+                debugLabel.gameObject.SetActive(true);
                 debugLabel.transform.position = 
                     EditorLogic.fetch.editorCamera.WorldToViewportPoint (endPoint);
                 if (value.magnitude > 0f) {
@@ -98,7 +98,7 @@ namespace RCSBuildAid
                 }
             } else {
                 if (debugLabel != null) {
-                    debugLabel.enabled = false;
+                    debugLabel.gameObject.SetActive(false);
                 }
             }
         }
